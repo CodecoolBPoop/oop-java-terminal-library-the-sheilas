@@ -1,0 +1,43 @@
+#+TITLE: Termlib: a minimalistic library for driving ANSI terminal emulators
+#+OPTIONS: toc:nil num:nil
+
+* Terminal emulators
+In the old times computers were huge [[https://en.wikipedia.org/wiki/Mainframe_computer#History][mainframes]] accessed through dumb
+[[https://en.wikipedia.org/wiki/Computer_terminal][terminals]].  Since many ancient programs (for example [[https://en.wikipedia.org/wiki/Vi][vi]]) rely on the
+functionality built into these terminals they are simulated on modern
+(for some definition of modern) graphical systems as well.
+* This project
+There are multiple excellent libraries which aim to instrument these emulators.
+So why are we rolling our own?
+Most of the others:
+- Try to cover all imaginable features.
+- Take full control of our terminal emulator.
+This library's goal is:
+- Implement only the most often used functionality
+- Be able to use them in an ad-hoc manner.  Only when needed, and
+  otherwise keep out of the way.
+** Features
+- Change background / foreground color for printing.
+- Clear the screen.
+- Move cursor to arbitrary position.
+- Move cursor relative to its actual position.
+- Put a glyph to the actual cursor position.
+** Sources
+Some of the control sequences are described [[http://www.termsys.demon.co.uk/vtansi.htm][here]].
+The relevant parts for us are:
+- [[http://www.termsys.demon.co.uk/vtansi.htm#cursor][Cursor Control]]
+- [[http://www.termsys.demon.co.uk/vtansi.htm#erase][Erasing Text]]
+- [[http://www.termsys.demon.co.uk/vtansi.htm#colors][Set Display Attributes]]
+* Things to watch out for
+- Rows and columns are addressed starting from =1=.
+- If the foreground color is changed and then the background color is
+  changed as well the foreground color is not reset.
+- Might be obvious but one of the mentors ran into it: =println=
+  prints a newline ☺.
+- To see the bytestream output by your program use =hexdump=:
+#+BEGIN_EXAMPLE
+  $ java -jar target/project.jar | hexdump -c
+  0000000 033   [   1   ;   1   H 033   [   2   J 033   [   3   0   ;   0
+  0000010   m 033   [   1   ;   0   H   H   e   l   l   o       w   o   r
+  ...
+#+END_EXAMPLE
