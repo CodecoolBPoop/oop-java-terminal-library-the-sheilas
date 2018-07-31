@@ -4,6 +4,8 @@ public class Terminal {
     /**
      * The beginning of control sequences.
      */
+    // HINT: In \033 the '0' means it's an octal number. And 33 in octal equals 0x1B in hexadecimal.
+    // Now you have some info to decode that page where the control codes are explained ;)
     private static final String CONTROL_CODE = "\033[";
     /**
      * Command for whole screen clearing.
