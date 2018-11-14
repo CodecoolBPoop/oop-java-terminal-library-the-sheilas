@@ -1,4 +1,4 @@
-package com.codecool.termlib;
+// package com.codecool.termlib;
 
 public class Terminal {
     /**
@@ -40,8 +40,8 @@ public class Terminal {
      * Might reset cursor position.
      */
     public void clearScreen() {
-    
-    System.out.println(CONTROL_CODE + MOVE + CONTROL_CODE + CLEAR)
+
+    System.out.println(CONTROL_CODE + MOVE + CONTROL_CODE + CLEAR);
     }
 
     /**
@@ -69,12 +69,12 @@ public class Terminal {
     public static final String YELLOW = "\u001B[33m";
     public static final String PURPLE = "\u001B[35m";
     public static final String CYAN = "\u001B[36m";
-    
+
     public static String setColor(String color, String string) {
-        
+
         return color + string + RESET;
     }
-    
+
     /**
      * Set the background printing color.
      *
@@ -82,8 +82,8 @@ public class Terminal {
      *
      * @param color The background color to set.
      */
-    public void setBgColor(Color color) {
-    }
+    //public void setBgColor(Color color) {
+    //}
 
     /**
      * Make printed text underlined.
@@ -104,8 +104,8 @@ public class Terminal {
      * @param direction Step the cursor in this direction.
      * @param amount Step the cursor this many times.
      */
-    public void moveCursor(Direction direction, Integer amount) {
-    }
+    //public void moveCursor(Direction direction, Integer amount) {
+    //}
 
     /**
      * Set the character diplayed under the current cursor position.
